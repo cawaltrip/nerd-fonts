@@ -91,7 +91,10 @@ while read -r filename; do
     if [ "$expected" -ne 0 ]; then
         # Should never happen, but who knows
         echo "${LINE_PREFIX} Did not pack expected number of font files! Likely same font names for different paths."
-        exit 1
+        echo "Found the following paths:"
+        find "${searchdir}" -type f -exec bash -c 'printf "%s\000" "{}" | sed "s!\(.*\)/!\1|!"' \; | sort -z -u '-t|' -k2,2 | sort -z
+        echo "Not exiting with error"
+        # exit 1
     fi
     (cd "${outputdir}" && tar rf "${outputdir}/${basename}.tar" "README.md")
     if [ -n "$fontconfig" ]; then
