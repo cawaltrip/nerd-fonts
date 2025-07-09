@@ -554,6 +554,9 @@ class font_patcher:
             if self.args.material:
                 additionalFontNameSuffix += " MDI"
                 verboseAdditionalFontNameSuffix += " Plus Material Design Icons"
+            if self.args.batterysymbols:
+                additionsFontNameSuffix += " BS"
+                verboseAdditionalFontNameSuffix += " Plus Battery Symbols"
             if self.args.weather:
                 additionalFontNameSuffix += " WEA"
                 verboseAdditionalFontNameSuffix += " Plus Weather Icons"
@@ -1139,6 +1142,7 @@ class font_patcher:
             {'Enabled': self.args.powersymbols,         'Name': "Power Symbols",           'Filename': "Unicode_IEC_symbol_font.otf",                    'Exact': True,  'SymStart': 0x2B58, 'SymEnd': 0x2B58, 'SrcStart': None,   'ScaleRules': None,             'Attributes': SYM_ATTR_DEFAULT},  # Heavy Circle (aka Power Off)
             {'Enabled': False             ,             'Name': "Material legacy",         'Filename': "materialdesign/materialdesignicons-webfont.ttf", 'Exact': False, 'SymStart': 0xF001, 'SymEnd': 0xF847, 'SrcStart': 0xF500, 'ScaleRules': None,             'Attributes': SYM_ATTR_DEFAULT},
             {'Enabled': self.args.material,             'Name': "Material",                'Filename': "materialdesign/MaterialDesignIconsDesktop.ttf",  'Exact': True,  'SymStart': 0xF0001,'SymEnd': 0xF1AF0,'SrcStart': None,   'ScaleRules': MDI_SCALE_LIST,   'Attributes': SYM_ATTR_DEFAULT},
+            {'Enabled': self.args.batterysymbols,       'Name': "Battery Symbols",         'Filename': "BatterySymbols-Regular.ttf",                     'Exact': True,  'SymStart': 0xF2000,'SymEnd': 0xF20C9,'SrcStart': None,   'ScaleRules': None,             'Attributes': SYM_ATTR_DEFAULT},  # Battery Symbols
             {'Enabled': self.args.weather,              'Name': "Weather Icons",           'Filename': "weather-icons/weathericons-regular-webfont.ttf", 'Exact': False, 'SymStart': 0xF000, 'SymEnd': 0xF0EB, 'SrcStart': 0xE300, 'ScaleRules': WEATH_SCALE_LIST, 'Attributes': SYM_ATTR_DEFAULT},
             {'Enabled': self.args.fontlogos,            'Name': "Font Logos",              'Filename': "font-logos.ttf",                                 'Exact': True,  'SymStart': 0xF300, 'SymEnd': 0xF381, 'SrcStart': None,   'ScaleRules': None,             'Attributes': SYM_ATTR_DEFAULT},
             {'Enabled': self.args.octicons,             'Name': "Octicons",                'Filename': "octicons/octicons.otf",                          'Exact': False, 'SymStart': 0xF000, 'SymEnd': 0xF105, 'SrcStart': 0xF400, 'ScaleRules': OCTI_SCALE_LIST,  'Attributes': SYM_ATTR_DEFAULT},  # Magnifying glass
@@ -2066,6 +2070,7 @@ def setup_arguments():
     sym_font_group.add_argument('--powerline',                                  dest='powerline',            default=False, action='store_true', help='Add Powerline Glyphs')
     sym_font_group.add_argument('--powerlineextra',                             dest='powerlineextra',       default=False, action='store_true', help='Add Powerline Extra Glyphs (https://github.com/ryanoasis/powerline-extra-symbols)')
     sym_font_group.add_argument('--powersymbols',                               dest='powersymbols',         default=False, action='store_true', help='Add IEC Power Symbols (https://unicodepowersymbol.com/)')
+    sym_font_group.add_argument('--batterysymbols',                             dest='batterysymbols',       default=False, action='store_true', help='Add Battery Symbols (https://github.com/cawaltrip/battery-symbols)')
     sym_font_group.add_argument('--weather',                                    dest='weather',              default=False, action='store_true', help='Add Weather Icons (https://github.com/erikflowers/weather-icons)')
 
     expert_group = parser.add_argument_group('Expert Options')
@@ -2130,6 +2135,7 @@ def setup_arguments():
         args.powerlineextra = True
         args.material = True
         args.weather = True
+        args.batterysymbols = True
 
     if not args.complete:
         sym_font_args = []
