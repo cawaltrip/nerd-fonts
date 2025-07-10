@@ -92,7 +92,8 @@ while read -r filename; do
         # Should never happen, but who knows
         echo "${LINE_PREFIX} Did not pack expected number of font files! Likely same font names for different paths."
         echo "Found the following paths:"
-        find "${searchdir}" -type f -exec bash -c 'printf "%s\000" "{}" | sed "s!\(.*\)/!\1|!"' \; | sort -z -u '-t|' -k2,2 | sort -z
+        find "${searchdir}" -type f
+        # find "${searchdir}" -type f -exec bash -c 'printf "%s\000" "{}" | sed "s!\(.*\)/!\1|!"'  \; | sort -z -u '-t|' -k2,2 | sort -z
         echo "Not exiting with error"
         # exit 1
     fi
