@@ -439,7 +439,6 @@ class font_patcher:
             outfile = os.path.normpath(os.path.join(
                 sanitize_filename(self.args.outputdir, True),
                 sanitize_filename(create_filename(sourceFonts)) + ".ttc"))
-            print(f"outfile(len(sourcefounts) > 1) = {outfile}")
             sourceFonts[0].generateTtc(outfile, sourceFonts[1:], flags=gen_flags, layer=layer)
             message = "   Generated {} fonts\n   \\===> '{}'".format(len(sourceFonts), outfile)
         else:
@@ -449,7 +448,6 @@ class font_patcher:
             outfile = os.path.normpath(os.path.join(
                 sanitize_filename(self.args.outputdir, True),
                 sanitize_filename(fontname) + self.args.extension))
-            print(f"outfile (len(sourceFont == 1)) = {outfile}")
             bitmaps = str()
             if len(sourceFont.bitmapSizes):
                 logger.debug("Preserving bitmaps %s", repr(sourceFont.bitmapSizes))
